@@ -1,0 +1,28 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Landing from './pages/Landing';
+import Conversa from './pages/Conversa';
+import Processando from './pages/Processando';
+import Resultado from './pages/Resultado';
+import ProcessandoCarga from './pages/ProcessandoCarga';
+import TransicaoGTM from './pages/TransicaoGTM';
+import PlanoGTM from './pages/PlanoGTM';
+import Tracker from './pages/Tracker';
+import Manifesto from './pages/Manifesto';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/processando-carga" element={<ProcessandoCarga />} />
+        <Route path="/diagnostico" element={<Conversa />} />
+        <Route path="/processando" element={<Processando />} />
+        <Route path="/resultado" element={<Resultado />} />
+        <Route path="/transicao-gtm" element={<TransicaoGTM />} />
+        <Route path="/plano-gtm" element={<PlanoGTM />} />
+        <Route path="/tracker" element={<Tracker />} />
+        <Route path="/manifesto" element={<Manifesto />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}

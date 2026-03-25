@@ -1,0 +1,73 @@
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+}
+
+.hero-logo {
+  font-size: 5rem;
+  font-weight: 400;
+  margin-bottom: 0px;
+  background: linear-gradient(to bottom, #fff 30%, hsla(var(--text-primary), 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px hsla(var(--brand-primary), 0.2));
+}
+
+.tag-line {
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: hsla(var(--text-primary), 0.4);
+  font-weight: 300;
+}
+
+.lastro-input-v2 {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid hsla(var(--border-glass));
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.lastro-input-v2:focus {
+  outline: none;
+  border-color: hsl(var(--brand-primary));
+  box-shadow: 0 0 20px hsla(var(--brand-primary), 0.1);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.lastro-input-v2::placeholder {
+  color: hsla(var(--text-primary), 0.2);
+}
+
+.input-glow {
+  position: absolute;
+  bottom: -1px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--brand-primary)), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lastro-input-v2:focus + .input-glow {
+  opacity: 1;
+}
+
+.landing-footer {
+  margin-top: 60px;
+}
+
+@media (max-width: 600px) {
+  .hero-logo { font-size: 3.5rem; }
+  .tag-line { font-size: 0.7rem; letter-spacing: 0.2em; }
+}
