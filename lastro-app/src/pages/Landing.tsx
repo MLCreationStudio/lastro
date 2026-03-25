@@ -30,44 +30,20 @@ export default function Landing() {
           <span className="tag-line font-mono tracking-[0.6em]">GTM_CORE_ALGORITHM</span>
         </div>
 
-        <GlassPanel className="landing-cta-panel p-8 mt-12 w-full max-w-[620px] terminal-border-glow">
-          <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
-            <p className="text-[0.6rem] text-white/40 uppercase tracking-[0.3em] font-mono">Input_Source_Required</p>
-            <div className="flex gap-1">
-               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40" />
-               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40" />
-               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-6">
-            <div className="input-group relative">
-               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 font-mono text-sm opacity-50">&gt;</span>
-              <input 
-                type="text" 
-                className="lastro-input-v2 !pl-10 font-mono text-sm tracking-wider" 
-                placeholder="insira_dominio_ou_social..."
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleStart()}
-              />
-              <div className="input-glow" />
-            </div>
-
+        <GlassPanel className="landing-cta-panel p-12 mt-12 w-full max-w-[620px] terminal-border-glow">
+          <div className="stack gap-8 items-center">
+            <h2 className="text-2xl font-display text-white">Pronto para a verdade?</h2>
+            <p className="text-sm text-white/40 font-mono tracking-wider max-w-[400px]">
+              O Módulo 1 (Carga Rápida) está ativo e pronto para analisar seu posicionamento.
+            </p>
+            
             <button
-              className="lastro-btn lastro-btn-primary w-full justify-center group h-[56px] font-mono"
-              onClick={handleStart}
+              className="lastro-btn lastro-btn-primary w-full justify-center group h-[64px] font-mono"
+              onClick={() => navigate('/diagnostico')}
             >
-              <span className="btn-text">
-                {url.trim() ? 'RUN_QUICK_SCAN (ACSD)' : 'START_MANUAL_DIAGNOSTIC'}
-              </span>
-              <span className="btn-icon group-hover:translate-x-1 transition-transform ml-2">_</span>
+              <span className="btn-text uppercase tracking-[0.2em]">Acessar Módulo 1 (ACSD)</span>
+              <span className="btn-icon group-hover:translate-x-2 transition-transform ml-4">_</span>
             </button>
-          </div>
-
-          <div className="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-[0.55rem] text-white/20 font-mono tracking-[0.2em]">
-            <span>ENCRYPTION: AES-256</span>
-            <span>SOBERANIA_DADOS: ATIVA</span>
           </div>
         </GlassPanel>
 
