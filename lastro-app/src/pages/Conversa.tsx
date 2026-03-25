@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TOPICOS } from '../data/topicos';
-import { Typewriter, LoadingDots, ProgressBar, TopicIndicator, GlassPanel } from '../components/ui';
+import { Typewriter, ProgressBar, TopicIndicator, GlassPanel } from '../components/ui';
 import './Conversa.css';
 
 interface Mensagem {
@@ -191,35 +191,40 @@ export default function Conversa() {
   };
 
   return (
-    <div className="conversa-page">
+    <div className="conversa-page terminal-bg">
       <ProgressBar current={topicoAtual + 1} total={TOPICOS.length} />
       
-      <div className="conversa-header-hud">
+      <div className="conversa-header-hud terminal-border-glow">
         <div className="hud-line">
-           <span className="hud-label">SISTEMA ATIVO: </span>
-           <span className="hud-value text-emerald-500">DIAGNÓSTICO GTM</span>
+           <span className="terminal-text">SYS_LINK // </span>
+           <span className="text-mono text-emerald-500">DIAGNOSTICO_GTM_ACTIVE</span>
         </div>
         <div className="hud-line">
-           <span className="hud-label">PRECISÃO: </span>
-           <span className="hud-value">{qualidade}%</span>
+           <span className="terminal-text">CONFIDENCE // </span>
+           <span className="text-mono">{qualidade}%</span>
         </div>
+        {feedbackAtual && (
+          <div className="hud-feedback-toast fade-in font-mono text-[0.55rem] text-emerald-400/60 mt-2">
+            &gt; {feedbackAtual}
+          </div>
+        )}
       </div>
 
-      <div className="conversa-history container max-w-[800px] mx-auto pt-40 pb-64 px-6">
+      <div className="conversa-history container max-w-[800px] mx-auto pt-48 pb-64 px-6">
         {mensagens.map((msg, i) => {
           const isLatestQuestion = msg.tipo === 'pergunta' && i === mensagens.length - 1;
           const shouldTypewrite = isLatestQuestion && isTyping;
 
           return (
-            <div key={`${msg.tipo}-${i}`} className={`chat-bubble-v2 ${msg.tipo}`}>
-              <div className="bubble-meta">
-                 {msg.tipo === 'pergunta' ? 'LASTRO_ENGINE' : 'USER_INPUT'}
+            <div key={`${msg.tipo}-${i}`} className={`chat-bubble-v3 ${msg.tipo}`}>
+              <div className="bubble-meta font-mono">
+                 [{msg.tipo === 'pergunta' ? 'SYSTEM_LOG' : 'USER_AUTH'}] {new Date().toLocaleTimeString()}
               </div>
               <div className="bubble-text">
                 {shouldTypewrite ? (
                   <Typewriter text={msg.texto} onComplete={handleTypewriterComplete} />
                 ) : (
-                  msg.texto
+                  <span className="text-mono">{msg.texto}</span>
                 )}
               </div>
             </div>
@@ -227,48 +232,50 @@ export default function Conversa() {
         })}
 
         {isProcessing && (
-          <div className="chat-bubble-v2 pergunta">
-             <LoadingDots />
+          <div className="chat-bubble-v3 pergunta">
+             <div className="font-mono text-[0.6rem] text-emerald-500/50 animate-pulse">
+                &gt; ANALYZING_QUERY_CHUNKS...
+             </div>
           </div>
         )}
 
         <div ref={bottomRef} className="h-20" />
       </div>
 
-      {/* Persistent Input Bar */}
       <div className="conversa-input-bar">
         <div className="container max-w-[800px] mx-auto px-6">
-          <GlassPanel className="p-4 !rounded-2xl border-white/10 shadow-2xl">
+          <GlassPanel className="p-4 !rounded-xl terminal-border-glow !bg-black/40">
             {(!isTyping && !isProcessing && topico) ? (
                <div className="fade-in">
                   {tipoInput === 'select' && topico.opcoes ? (
                     <div className="flex flex-wrap gap-2">
                       {topico.opcoes.map(opt => (
-                        <button key={opt.value} className="conversa-chip" onClick={() => handleSelectOption(opt.value, opt.label)}>
-                          {opt.label}
+                        <button key={opt.value} className="terminal-chip" onClick={() => handleSelectOption(opt.value, opt.label)}>
+                          [{opt.label}]
                         </button>
                       ))}
                     </div>
                   ) : (
-                    <div className="flex gap-4 items-end">
+                    <div className="flex gap-4 items-center relative">
+                      <span className="text-emerald-500 font-mono pl-2">&gt;</span>
                       <textarea
                         ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-                        className="lastro-textarea-v2 flex-1"
+                        className="terminal-input-v3 flex-1 font-mono text-sm"
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder={topico.placeholder}
+                        placeholder={topico?.placeholder?.toLowerCase().replace(/ /g, '_') || 'enter_data...'}
                         rows={1}
                       />
-                      <button className="send-btn-v2" onClick={handleSubmit} disabled={!inputValue.trim()}>
-                        ↑
+                      <button className="terminal-send-btn" onClick={handleSubmit} disabled={!inputValue.trim()}>
+                        [RETURN]
                       </button>
                     </div>
                   )}
                </div>
             ) : (
-               <div className="h-[42px] flex items-center justify-center opacity-30 text-[0.65rem] tracking-[0.4em] uppercase">
-                  Engine Processando...
+               <div className="h-[42px] flex items-center justify-center font-mono text-[0.6rem] tracking-[0.4em] uppercase text-emerald-500/40">
+                  <span className="animate-pulse">CPU_PROCESSING_SEQUENCE...</span>
                </div>
             )}
           </GlassPanel>

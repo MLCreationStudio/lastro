@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 /* ─────────────────────────────────────────────
    LASTRO ENGINE v2.0 — Design Tokens (Zero UI)
@@ -18,6 +18,7 @@
   /* Typography */
   --font-display: 'DM Serif Display', serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* Spacing & Rails */
   --safe-area: 24px;
@@ -52,6 +53,44 @@ body::before {
   pointer-events: none;
   z-index: -1;
 }
+
+/* ── Scanline FX ── */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.01),
+    rgba(0, 255, 0, 0.005),
+    rgba(0, 0, 255, 0.01)
+  );
+  z-index: 1000;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.terminal-text {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: hsla(var(--brand-primary), 0.8);
+  font-size: 0.65rem;
+}
+
+.terminal-border-glow {
+  border: 1px solid hsla(var(--brand-primary), 0.2);
+  box-shadow: inset 0 0 15px hsla(var(--brand-primary), 0.05), 0 0 10px hsla(var(--brand-primary), 0.1);
+}
+
+.text-mono { font-family: var(--font-mono); }
 
 /* ── Glassmorphism Utils ── */
 .glass-panel {

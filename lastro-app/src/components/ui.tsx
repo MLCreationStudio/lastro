@@ -35,7 +35,7 @@ export function Typewriter({ text, speed = 30, onComplete, className = '' }: { t
   }, [text, speed, onComplete]);
 
   return (
-    <span className={className}>
+    <span className={`text-mono ${className}`}>
       {displayed}
       {!isDone && <span className="cursor-blink" />}
     </span>
