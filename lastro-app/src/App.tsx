@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
+import Diagnostico from './pages/Diagnostico';
 import Conversa from './pages/Conversa';
 import Processando from './pages/Processando';
 import Resultado from './pages/Resultado';
@@ -14,8 +15,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/diagnostico" element={<Diagnostico />} />
+        <Route path="/conversa" element={<Conversa />} />
         <Route path="/processando-carga" element={<ProcessandoCarga />} />
-        <Route path="/diagnostico" element={<Conversa />} />
         <Route path="/processando" element={<Processando />} />
         <Route path="/resultado" element={<Resultado />} />
         <Route path="/transicao-gtm" element={<TransicaoGTM />} />
