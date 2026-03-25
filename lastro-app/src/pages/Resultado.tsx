@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ScoreCounter, DimensionBar, Badge, XPBar, GlassPanel } from '../components/ui';
+import { DimensionBar, GlassPanel } from '../components/ui';
 import './Resultado.css';
 
 const ZONA_LABELS: Record<string, { label: string; desc: string }> = {
@@ -24,80 +24,85 @@ export default function Resultado() {
   if (scoreData.score >= 60) badges.push({ name: 'ALFA_GROWTH', icon: '🚀', desc: 'Pronto para o topo.' });
 
   return (
-    <div className="resultado-hud terminal-bg">
-      <div className="hud-container stack gap-12">
+    <div className="resultado-hud terminal-bg select-none">
+      <div className="hud-container container max-w-[1200px] mx-auto pt-32 pb-20 px-6 stack gap-16">
         
-        {/* Top Rail: XP & Meta */}
-        <div className="hud-top-rail grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-emerald-500/20">
-          <GlassPanel className="p-6 terminal-border-glow">
-            <XPBar current={scoreData.score * 12} target={1200} />
-          </GlassPanel>
-          <div className="text-right hidden lg:block font-mono">
-             <p className="text-[0.6rem] text-emerald-500/40 uppercase tracking-[0.4em]">SESSAO_DATA_LOG // ID-{diagnosticoId?.slice(0,8) || 'RUN_CMD_01'}</p>
-             <p className="text-[0.5rem] text-white/10 mt-1">ENCRYPTION_ACTIVE // BCRYPT_V2</p>
-          </div>
+        {/* Top Rail: Authority Meta */}
+        <div className="fixed top-0 left-0 w-full p-8 flex justify-between items-center border-b border-white/5 bg-black/40 backdrop-blur-md z-50">
+           <div className="font-mono text-[0.6rem] tracking-[0.5em] text-white/30 uppercase">
+              PARECER_TECNICO // DIAGNOSTICO_#ID-{diagnosticoId?.slice(0,8) || 'UNIT_01'}
+           </div>
+           <div className="font-mono text-[0.6rem] tracking-[0.3em] text-accent-gold uppercase">
+              [STATUS: ANALISE_CONFIRMADA]
+           </div>
         </div>
 
-        {/* Main Display: Score & Zona */}
-        <div className="hud-main grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Main Cockpit Section */}
+        <div className="hud-main grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-12 xl:col-span-5 flex justify-center">
-            <div className="score-circle scale-125 terminal-border-glow !border-emerald-500/50">
-               <ScoreCounter target={scoreData.score} />
-               <div className="score-ring-outer !border-emerald-500/20" />
-               <div className="absolute -top-10 left-1/2 -translate-x-1/2 font-mono text-[0.6rem] text-emerald-500">LASTRO_SCORE_UNIT</div>
+            <div className="score-cockpit relative">
+               <div className="score-value-serif flex flex-col items-center">
+                  <span className="text-[10rem] font-display leading-none text-accent-gold drop-shadow-2xl">{scoreData.score}</span>
+                  <span className="font-mono text-xs tracking-[0.8em] text-white/20 -mt-4">UNIDADES_DE_LASTRO</span>
+               </div>
+               <div className="absolute -inset-20 border border-white/5 rounded-full animate-pulse pointer-events-none" />
             </div>
           </div>
 
-          <div className="lg:col-span-12 xl:col-span-7 stack gap-6">
-            <div className="font-mono text-[0.7rem] text-emerald-500/40 tracking-[0.5em] mb-2 uppercase">FINAL_DIAGNOSTIC_REPORT</div>
-            <h2 className="text-5xl lg:text-7xl leading-tight font-display">
-               <span className="text-emerald-500">{zona.label}</span>
+          <div className="lg:col-span-12 xl:col-span-7 stack gap-8">
+            <div className="badge-rail flex gap-4">
+                {badges.map(b => (
+                  <div key={b.name} className="px-3 py-1 border border-white/10 rounded-sm font-mono text-[0.5rem] tracking-widest text-white/40 uppercase">
+                     [{b.name}]
+                  </div>
+                ))}
+            </div>
+            
+            <h2 className="text-6xl lg:text-8xl font-display leading-[0.95] text-white">
+               Resultado: <br />
+               <span className={`${scoreData.score >= 60 ? 'text-emerald-500' : 'text-accent-alert'} italic`}>{zona.label}</span>
             </h2>
-            <p className="text-white/60 text-xl font-mono leading-relaxed max-w-[600px]">
+            
+            <p className="text-lg font-mono text-white/40 leading-relaxed max-w-[600px] uppercase tracking-tight">
               &gt; {zona.desc}
             </p>
-            <div className="flex gap-4">
-               {badges.map(b => (
-                 <div key={b.name} className="flex flex-col gap-1">
-                    <Badge {...b} />
-                 </div>
-               ))}
-            </div>
           </div>
         </div>
 
-        {/* Bottom HUD: Dimensions & CTA */}
-        <div className="hud-bottom grid grid-cols-1 lg:grid-cols-12 gap-12">
-           <GlassPanel className="lg:col-span-7 p-8 terminal-border-glow">
-              <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.3em] text-emerald-500/40 mb-8 border-b border-white/5 pb-2">DATA_MATRIX // ACSD_ANALYSIS</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                <DimensionBar label="FINANCE_FEASIBILITY" value={scoreData.dimensoes.viabilidade} delay={400} />
-                <DimensionBar label="ICP_ACCURACY" value={scoreData.dimensoes.icp} delay={600} />
-                <DimensionBar label="TIMELINE_ALIGN" value={scoreData.dimensoes.prazo} delay={800} />
-                <DimensionBar label="MARKET_MATURITY" value={scoreData.dimensoes.mercado} delay={1000} />
+        {/* Matrix Analysis Cards */}
+        <div className="hud-matrix grid grid-cols-1 lg:grid-cols-12 gap-8">
+           <GlassPanel className="lg:col-span-8 p-10 border-white/5 !bg-black/40">
+              <h3 className="text-xl font-display text-white mb-10 border-b border-white/5 pb-4">Matriz de Viabilidade ACSD</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+                <DimensionBar label="EFICIENCIA_FINANCEIRA" value={scoreData.dimensoes.viabilidade} delay={400} />
+                <DimensionBar label="PRECISAO_DE_ICP" value={scoreData.dimensoes.icp} delay={600} />
+                <DimensionBar label="ALINHAMENTO_SAZONAL" value={scoreData.dimensoes.prazo} delay={800} />
+                <DimensionBar label="MATURIDADE_CANAL" value={scoreData.dimensoes.mercado} delay={1000} />
               </div>
            </GlassPanel>
 
-           <GlassPanel className="lg:col-span-5 p-8 flex flex-col justify-between terminal-border-glow !bg-emerald-950/20">
-              <div>
-                <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.3em] text-emerald-500 mb-6">NEXT_PHASE_SEQUENCE</h3>
-                <p className="text-sm font-mono text-white/50 mb-8">
-                  {scoreData.score >= 40 
-                    ? "SISTEMA: Módulo 2 liberado. Protocolo de escala matemática disponível para execução imediata."
-                    : "ALERTA: Protocolo de investimento bloqueado por inconsistência de dados. Re-calibração sugerida."}
-                </p>
-              </div>
-              
-              <button 
-                className={`lastro-btn ${scoreData.score >= 40 ? 'lastro-btn-primary' : 'lastro-btn-secondary'} w-full justify-center group h-[64px] font-mono text-sm`}
-                onClick={() => scoreData.score >= 40 
-                  ? navigate('/transicao-gtm', { state: { score: scoreData.score, diagnosticoId, respostas } })
-                  : navigate('/diagnostico')}
-              >
-                <span>[{scoreData.score >= 40 ? "RESUME_MISSION: MAPA_CANAIS" : "REBOOT_SYSTEM: CALIBRATE"}]</span>
-                <span className="group-hover:translate-x-2 transition-transform ml-2">_</span>
-              </button>
-           </GlassPanel>
+           <div className="lg:col-span-4 stack gap-8">
+              <GlassPanel className="p-8 border-auth !bg-accent-gold/5 flex flex-col justify-between h-full">
+                 <div>
+                    <h3 className="text-[0.6rem] font-mono text-accent-gold tracking-[0.4em] uppercase mb-6">ORÁCULO_GTM // PRÓXIMO_PASSO</h3>
+                    <p className="text-sm font-mono text-white/60 leading-relaxed">
+                      {scoreData.score >= 40 
+                        ? "SISTEMA: Direcional validado. O Módulo 2 (Mapa de Canais) está liberado para orquestração tática."
+                        : "ALERTA: O plano atual é financeiramente inviável. Execute o comando [REBOOT] para recalibrar o budget."}
+                    </p>
+                 </div>
+                 
+                 <button 
+                   className={`lastro-btn ${scoreData.score >= 40 ? '!bg-emerald-600 !text-black' : '!bg-accent-alert !text-white'} w-full justify-center group h-[72px] font-mono mt-8 border-auth`}
+                   onClick={() => scoreData.score >= 40 
+                     ? navigate('/transicao-gtm', { state: { score: scoreData.score, diagnosticoId, respostas } })
+                     : navigate('/diagnostico')}
+                 >
+                   <span className="font-bold tracking-[0.2em]">{scoreData.score >= 40 ? "[LIBERAR_MAPA_CANAL]" : "[REBOOT_DIAGNOSTICO]"}</span>
+                   <span className="ml-4 opacity-50 group-hover:translate-x-2 transition-transform">_</span>
+                 </button>
+              </GlassPanel>
+           </div>
         </div>
 
       </div>

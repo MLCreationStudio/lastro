@@ -9,6 +9,7 @@ import TransicaoGTM from './pages/TransicaoGTM';
 import PlanoGTM from './pages/PlanoGTM';
 import Tracker from './pages/Tracker';
 import Manifesto from './pages/Manifesto';
+import Briefing from './pages/Briefing';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/plano-gtm" element={<PlanoGTM />} />
         <Route path="/tracker" element={<Tracker />} />
         <Route path="/manifesto" element={<Manifesto />} />
+        <Route path="/briefing" element={<Briefing />} />
       </Routes>
     </BrowserRouter>
   );

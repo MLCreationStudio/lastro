@@ -5,25 +5,35 @@
    ───────────────────────────────────────────── */
 
 :root {
-  /* Core Colors (HSL for control) */
-  --bg-dark: 160 20% 4%;
-  --brand-primary: 158 69% 37%; /* #1D9E75 */
-  --brand-glow: 158 69% 37% / 0.3;
-  --text-primary: 150 10% 95%;
-  --text-secondary: 150 10% 95% / 0.7;
-  --text-muted: 150 10% 95% / 0.4;
-  --border-glass: 158 60% 37% / 0.2;
-  --surface-glass: 160 20% 8% / 0.6;
+  /* Abissal Pallete (Dark Mode Nativo) */
+  --bg-dark: 160 20% 3%; /* #050807 - Ainda mais profundo */
+  --surface-abissal: 160 20% 5%; /* #0A0A0A */
+  --surface-glass: 160 20% 7% / 0.8; /* #121815 com 80% opacity */
   
-  /* Typography */
+  /* Authority Accents */
+  --brand-primary: 158 69% 37%; /* Verde Clínico (#1D9E75) */
+  --accent-gold: 45 60% 53%; /* Bronze/Ouro Envelhecido (#D4AF37) */
+  --accent-alert: 0 70% 30%; /* Blood Red (#8B0000) */
+  --accent-warn: 35 80% 50%; /* Amber Mudo */
+  
+  /* Typography Ice/Gelo */
+  --text-primary: 214 32% 91%; /* Cinza Gelo (#E2E8F0) */
+  --text-secondary: 214 32% 91% / 0.7;
+  --text-muted: 214 32% 91% / 0.4;
+  
+  /* Borders & Glass */
+  --border-glass: 214 32% 91% / 0.05;
+  --border-auth: 45 60% 53% / 0.3; /* Border Bronze sutil */
+  
+  /* Fonts */
   --font-display: 'DM Serif Display', serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Spacing & Rails */
-  --safe-area: 24px;
-  --radius-lg: 16px;
-  --radius-md: 8px;
+  /* Spacing */
+  --safe-area: 32px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
 }
 
 /* ── Reset & Base ── */

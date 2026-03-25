@@ -66,40 +66,43 @@ export default function Diagnostico() {
       <div className="diagnostico-container container max-w-[800px] mx-auto min-h-screen flex items-center justify-center px-6">
         
         {!isProcessing ? (
-          <div className="input-phase w-full text-center stack gap-8">
-            <div className="terminal-header mb-4">
-               <span className="terminal-text px-3 py-1 border border-emerald-500/30 rounded">PROTOCOLO: CARGA_RAPIDA_V1.0</span>
+          <div className="input-phase w-full text-center stack gap-12">
+            <div className="fade-in">
+               <span className="font-mono text-[0.55rem] tracking-[0.6em] text-white/20 uppercase border-b border-white/5 pb-2">
+                  MODULO_01 // ANALISE_PARAMETRICA
+               </span>
             </div>
             
-            <h1 className="text-4xl lg:text-7xl font-display leading-tight text-white mb-4">
-              A verdade sobre o <span className="text-emerald-500">seu negócio.</span>
+            <h1 className="text-5xl lg:text-7xl font-display leading-tight text-white mb-4">
+              A verdade sobre <br />
+              <span className="text-emerald-500 italic">o seu negócio.</span>
             </h1>
             
-            <p className="text-white/40 text-lg font-mono tracking-tight max-w-[600px] mx-auto mb-8 uppercase text-[0.7rem]">
-              Insira a URL do produto. A IA fará a engenharia reversa do seu posicionamento em segundos.
+            <p className="text-white/30 text-sm font-mono tracking-[0.2em] max-w-[500px] mx-auto mb-8 uppercase">
+              O sistema exige uma URL para iniciar a varredura tática de mercado.
             </p>
 
-            <form onSubmit={handleStartAnalysis} className="diagnostico-form stack gap-6 w-full max-w-[500px] mx-auto">
+            <form onSubmit={handleStartAnalysis} className="diagnostico-form stack gap-8 w-full max-w-[500px] mx-auto">
               <div className="input-group relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 font-mono">&gt;</span>
+                <span className="absolute left-6 top-1/2 -translate-y-1/2 text-emerald-500 font-mono">&gt;</span>
                 <input 
                   type="url" 
-                  placeholder="https://seu-site.com.br"
+                  placeholder="DIGITE_A_URL_AQUI..."
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
-                  className="lastro-input-v2 !pl-10 font-mono !bg-black/40 terminal-border-glow"
+                  className="lastro-input-v2 !pl-12 font-mono text-sm !bg-black/60 border-white/5 focus:border-emerald-500/50 transition-all h-[64px]"
                   required
                   autoComplete="off"
                 />
               </div>
-              <button type="submit" className="lastro-btn lastro-btn-primary w-full justify-center group font-mono">
-                <span>[INICIAR_VARREDURA]</span>
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">_</span>
+              <button type="submit" className="lastro-btn lastro-btn-primary w-full justify-center group font-mono h-[72px] !bg-emerald-600 !text-black border-auth">
+                <span className="tracking-[0.3em] font-bold">[EXTRAIR_MATEMATICA_REAL]</span>
+                <span className="ml-4 opacity-50 group-hover:translate-x-2 transition-transform">_</span>
               </button>
             </form>
             
-            <p className="text-[0.55rem] font-mono text-white/10 uppercase tracking-[0.4em] mt-12">
-               Encryption: AES-256 // Lastro Core Protocol Active
+            <p className="text-[0.45rem] font-mono text-white/5 uppercase tracking-[0.8em] mt-20">
+               LASTRO_CORE_DRIVE // SECURE_BOOT_INIT
             </p>
           </div>
         ) : (
