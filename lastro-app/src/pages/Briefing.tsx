@@ -5,8 +5,8 @@ export default function Briefing() {
   const navigate = useNavigate();
 
   return (
-    <div className="briefing-container select-none bg-[#f8fafc] text-[#0f172a] min-h-screen py-20 px-6 font-mono">
-      <div className="max-w-[850px] mx-auto bg-white shadow-2xl p-16 border border-slate-200 relative overflow-hidden">
+    <div className="briefing-container select-none bg-[#f8fafc] text-[#0f172a] min-h-screen py-20 px-6 font-mono flex flex-col items-center">
+      <div className="max-w-1000 w-full mx-auto bg-white shadow-2xl p-16 border border-slate-200 relative overflow-hidden">
         
         {/* Header Contract Style */}
         <div className="flex justify-between items-start mb-16 border-b-2 border-slate-900 pb-8">

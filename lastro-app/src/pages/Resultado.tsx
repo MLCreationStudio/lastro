@@ -24,28 +24,28 @@ export default function Resultado() {
   if (scoreData.score >= 60) badges.push({ name: 'ALFA_GROWTH', icon: '🚀', desc: 'Pronto para o topo.' });
 
   return (
-    <div className="resultado-hud terminal-bg select-none">
-      <div className="hud-container container max-w-[1200px] mx-auto pt-32 pb-20 px-6 stack gap-16">
+    <div className="resultado-hud terminal-bg select-none min-h-screen flex flex-col">
+      <div className="hud-container container max-w-1200 mx-auto pt-32 pb-20 px-6 stack gap-16 flex flex-col items-center">
         
         {/* Top Rail: Authority Meta */}
         <div className="fixed top-0 left-0 w-full p-8 flex justify-between items-center border-b border-white/5 bg-black/40 backdrop-blur-md z-50">
-           <div className="font-mono text-[0.6rem] tracking-[0.5em] text-white/30 uppercase">
+           <div className="font-mono text-xs tracking-[0.5em] text-white/30 uppercase">
               PARECER_TECNICO // DIAGNOSTICO_#ID-{diagnosticoId?.slice(0,8) || 'UNIT_01'}
            </div>
-           <div className="font-mono text-[0.6rem] tracking-[0.3em] text-accent-gold uppercase">
+           <div className="font-mono text-xs tracking-[0.3em] text-accent-gold uppercase">
               [STATUS: ANALISE_CONFIRMADA]
            </div>
         </div>
 
         {/* Main Cockpit Section */}
-        <div className="hud-main grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-          <div className="lg:col-span-12 xl:col-span-5 flex justify-center">
+        <div className="hud-main grid grid-cols-12 gap-20 items-center w-full">
+          <div className="lg:col-span-12 flex justify-center">
             <div className="score-cockpit relative">
-               <div className="score-value-serif flex flex-col items-center">
-                  <span className="text-[10rem] font-display leading-none text-accent-gold drop-shadow-2xl">{scoreData.score}</span>
-                  <span className="font-mono text-xs tracking-[0.8em] text-white/20 -mt-4">UNIDADES_DE_LASTRO</span>
+               <div className="score-value-serif flex flex-col items-center justify-center h-full">
+                  <span className="text-9xl font-display leading-none text-accent-gold drop-shadow-2xl">{scoreData.score}</span>
+                  <span className="font-mono text-xs tracking-[0.8em] text-white/20">UNIDADES_DE_LASTRO</span>
                </div>
-               <div className="absolute -inset-20 border border-white/5 rounded-full animate-pulse pointer-events-none" />
+               <div className="absolute top-0 left-0 w-full h-full border border-white/5 rounded-full animate-pulse pointer-events-none" style={{ transform: 'scale(1.2)' }} />
             </div>
           </div>
 

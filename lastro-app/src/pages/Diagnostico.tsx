@@ -62,13 +62,13 @@ export default function Diagnostico() {
   };
 
   return (
-    <div className="diagnostico-page terminal-bg fade-in">
-      <div className="diagnostico-container container max-w-[800px] mx-auto min-h-screen flex items-center justify-center px-6">
+    <div className="diagnostico-page terminal-bg fade-in min-h-screen flex flex-col">
+      <div className="diagnostico-container container max-w-800 mx-auto min-h-screen flex items-center justify-center px-6">
         
         {!isProcessing ? (
-          <div className="input-phase w-full text-center stack gap-12">
+          <div className="input-phase w-full text-center stack gap-12 flex flex-col items-center">
             <div className="fade-in">
-               <span className="font-mono text-[0.55rem] tracking-[0.6em] text-white/20 uppercase border-b border-white/5 pb-2">
+               <span className="font-mono text-xs tracking-[0.6em] text-white/20 uppercase border-b border-white/5 pb-2">
                   MODULO_01 // ANALISE_PARAMETRICA
                </span>
             </div>
@@ -78,19 +78,19 @@ export default function Diagnostico() {
               <span className="text-emerald-500 italic">o seu negócio.</span>
             </h1>
             
-            <p className="text-white/30 text-sm font-mono tracking-[0.2em] max-w-[500px] mx-auto mb-8 uppercase">
+            <p className="text-white/30 text-sm font-mono tracking-[0.2em] max-w-500 mx-auto mb-8 uppercase">
               O sistema exige uma URL para iniciar a varredura tática de mercado.
             </p>
 
-            <form onSubmit={handleStartAnalysis} className="diagnostico-form stack gap-8 w-full max-w-[500px] mx-auto">
-              <div className="input-group relative">
+            <form onSubmit={handleStartAnalysis} className="diagnostico-form stack gap-8 w-full max-w-500 mx-auto flex flex-col items-center">
+              <div className="input-group relative w-full">
                 <span className="absolute left-6 top-1/2 -translate-y-1/2 text-emerald-500 font-mono">&gt;</span>
                 <input 
                   type="url" 
                   placeholder="DIGITE_A_URL_AQUI..."
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
-                  className="lastro-input-v2 !pl-12 font-mono text-sm !bg-black/60 border-white/5 focus:border-emerald-500/50 transition-all h-[64px]"
+                  className="lastro-input-v2 !pl-12 font-mono text-sm !bg-black/60 border-white/5 focus:border-emerald-500/50 transition-all h-[64px] w-full"
                   required
                   autoComplete="off"
                 />
